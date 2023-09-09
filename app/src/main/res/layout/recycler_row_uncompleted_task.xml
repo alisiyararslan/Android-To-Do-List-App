@@ -17,17 +17,12 @@
 
 
 
-        <ImageButton
-            android:layout_gravity="left"
-            android:id="@+id/completeButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/complete"
-            android:scaleType="centerInside"
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="completeButton"
 
-
-            android:background="#00ffffff"
-            android:onClick="onToggleStar"/>
+            ></RadioButton>
 
 
 
