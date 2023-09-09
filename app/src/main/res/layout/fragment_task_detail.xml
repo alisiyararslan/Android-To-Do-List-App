@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaskDetailFragment"
+    android:orientation="vertical"
+    android:layout_margin="7dp">
+
+    <EditText
+        android:id="@+id/taskDetailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centurie"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        ></EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="3dp"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/task_detail"
+            android:layout_gravity="center"></ImageView>
+
+        <EditText
+            android:id="@+id/editTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Add Task Detail"
+
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="181dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="3dp"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/date"
+            android:layout_gravity="center"></ImageView>
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="181dp" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="3dp"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/makeItComplete"-->
+<!--            android:text="Make It Complete"-->
+
+
+<!--            ></Button>-->
+
+        <Button
+            android:id="@+id/makeItComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make It Complete"
+            android:theme="@style/Button.White"
+            android:gravity="right"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_button_background"
+            android:elevation="4dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_gravity="center"
+        />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
