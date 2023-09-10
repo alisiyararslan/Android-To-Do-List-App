@@ -1,9 +1,6 @@
 package com.alisiyararslan.todolist.roomdb
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.alisiyararslan.todolist.model.Task
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -19,4 +16,7 @@ interface TaskDao {
 
     @Delete
     fun delete(task: Task) : Completable
+
+    @Update
+    fun update(task: Task) : Completable
 }

@@ -11,13 +11,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUnCompletedTask"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/completedTextCountLayout"
         android:layout_margin="3dp"
         >
 
@@ -29,7 +31,7 @@
 
         <TextView
             android:layout_marginLeft="10dp"
-            android:id="@+id/editTextPersonName"
+            android:id="@+id/completedCountText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -45,12 +47,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCompletedTask"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-    <View
-        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        />
+<!--    <View-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
