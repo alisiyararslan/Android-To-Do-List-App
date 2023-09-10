@@ -10,6 +10,8 @@ import com.alisiyararslan.todolist.databinding.FragmentTaskListBinding
 
 
 class TaskListFragment : Fragment() {
+
+
     private var _binding: FragmentTaskListBinding? = null
 
     private val binding get() = _binding!!

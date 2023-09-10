@@ -12,7 +12,9 @@ class Task(
 
     var dueDate: Date,
 
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+
+    var isCompleted : Boolean
 
 ) {
 
