@@ -7,14 +7,15 @@ import java.util.Date
 @Entity
 class Task(
     var taskDescripion : String,
-
-    var taskDetail:String,
-
-    var dueDate: Date,
-
     var isFavorite: Boolean,
 
-    var isCompleted : Boolean
+    var isCompleted : Boolean,
+
+    var taskDetail:String?,
+
+   // var dueDate: Date?,
+
+
 
 ) {
 
