@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recycler_view_uncompleted_task"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true">
 
 
     <LinearLayout
@@ -17,28 +24,16 @@
 
 
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="completeButton"
-
-            ></RadioButton>
 
 
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/taskText"
-            android:text="LoremLoremLorem  "
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginLeft="4dp"
+        <CheckBox
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_gravity="center"
-
-            ></TextView>
+            android:layout_height="wrap_content"
+            android:id="@+id/todoChechBox"
+            android:text="Lorem Lorem Lorem"
+            android:padding="5dp"
+            android:buttonTint="@android:color/holo_blue_bright"></CheckBox>
 
 
 
@@ -47,6 +42,7 @@
             android:id="@+id/favorite"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+
             android:src="@drawable/star"
             android:background="#00ffffff"
             android:onClick="onToggleStar"/>
@@ -54,5 +50,7 @@
 
 
     </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
