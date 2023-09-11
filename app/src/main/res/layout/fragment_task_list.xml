@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.TaskListFragment">
 
@@ -14,6 +15,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp"
+        android:background="@android:color/darker_gray"
+        app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,6 +35,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/arrow"
             android:layout_gravity="center"></ImageView>
 
@@ -44,16 +54,15 @@
 
     </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCompletedTask"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         />
-<!--    <View-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1"/>-->
+
 
     <LinearLayout
         android:layout_width="match_parent"

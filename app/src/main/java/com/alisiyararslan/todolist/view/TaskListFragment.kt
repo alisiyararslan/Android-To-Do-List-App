@@ -64,6 +64,7 @@ class TaskListFragment : Fragment() {
             binding.completedTextCountLayout.visibility = View.VISIBLE
             binding.recyclerViewCompletedTask.visibility = View.VISIBLE
 
+
             binding.recyclerViewCompletedTask.layoutManager = LinearLayoutManager(requireContext())
             val completed_adapter = TaskAdapter(completedTasks,db,taskDao)
             binding.recyclerViewCompletedTask.adapter =completed_adapter
@@ -72,8 +73,8 @@ class TaskListFragment : Fragment() {
 
 
         }else{
-            binding.completedTextCountLayout.visibility = View.INVISIBLE
-            binding.recyclerViewCompletedTask.visibility = View.INVISIBLE
+            binding.completedTextCountLayout.visibility = View.GONE
+            binding.recyclerViewCompletedTask.visibility = View.GONE
         }
 
 
@@ -101,6 +102,10 @@ class TaskListFragment : Fragment() {
             addTask(it)
         }
 
+        binding.completedTextCountLayout.setOnClickListener{
+            changeCompletedTasksVisiblity(it)
+        }
+
 
 
 
@@ -110,6 +115,14 @@ class TaskListFragment : Fragment() {
         val bottomSheetFragment = BottomSheetFragment()
         bottomSheetFragment.show(requireActivity().supportFragmentManager,"BottomSheetDialog")
 
+    }
+
+    fun changeCompletedTasksVisiblity(view : View){
+        if(binding.recyclerViewCompletedTask.visibility == View.GONE){
+            binding.recyclerViewCompletedTask.visibility = View.VISIBLE
+        }else if (binding.recyclerViewCompletedTask.visibility == View.VISIBLE){
+            binding.recyclerViewCompletedTask.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {

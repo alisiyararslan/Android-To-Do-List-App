@@ -27,13 +27,25 @@
 
 
         <CheckBox
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:id="@+id/todoChechBox"
+
+            android:padding="5dp"
+
+            android:buttonTint="@android:color/holo_blue_bright"></CheckBox>
+
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:id="@+id/todoChechBox"
-            android:text="Lorem Lorem Lorem"
-            android:padding="5dp"
-            android:buttonTint="@android:color/holo_blue_bright"></CheckBox>
+            android:layout_gravity="center"
+            android:id="@+id/todoText"
+            android:text="Lorem Lorem loerm"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            ></TextView>
 
 
 

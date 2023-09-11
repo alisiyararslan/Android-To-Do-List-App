@@ -22,5 +22,8 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_taskListFragment"
             app:destination="@id/taskListFragment" />
+        <argument
+            android:name="task"
+            app:argType="com.alisiyararslan.todolist.model.Task" />
     </fragment>
 </navigation>

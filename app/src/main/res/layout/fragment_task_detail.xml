@@ -8,14 +8,23 @@
     tools:context=".view.TaskDetailFragment"
     android:orientation="vertical"
     android:layout_margin="7dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task Detail"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp"
+        ></TextView>
 
     <EditText
-        android:id="@+id/taskDetailTextView"
+        android:id="@+id/taskDescriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=" Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centurie"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:layout_marginBottom="10dp"
         ></EditText>
 
     <LinearLayout
@@ -23,6 +32,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="3dp"
+        android:layout_marginBottom="10dp"
         >
 
         <ImageView
@@ -32,7 +42,7 @@
             android:layout_gravity="center"></ImageView>
 
         <EditText
-            android:id="@+id/editTextPersonName"
+            android:id="@+id/editTextTaskDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -50,6 +60,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="3dp"
+        android:layout_marginBottom="10dp"
         >
 
         <ImageView
@@ -82,34 +93,44 @@
         android:layout_margin="3dp"
         >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
 
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/makeItComplete"-->
-<!--            android:text="Make It Complete"-->
-
-
-<!--            ></Button>-->
 
         <Button
-            android:id="@+id/makeItComplete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Make It Complete"
+            android:id="@+id/deleteTaskDetailButton"
+            android:text="Delete"
+            android:textAllCaps="false"
             android:theme="@style/Button.White"
-            android:gravity="right"
             android:textColor="#FFFFFF"
             android:background="@drawable/rounded_button_background"
-            android:elevation="4dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+
+            android:layout_marginRight="15dp"></Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updateTaskDetailButton"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:theme="@style/Button.White"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_button_background"
+
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center"></Button>
+
+        <Button
+            android:id="@+id/changeCompleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make It uncomplete"
+            android:textAllCaps="false"
+            android:theme="@style/Button.White"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_button_background"
+
+
             android:layout_gravity="center"
 
         />

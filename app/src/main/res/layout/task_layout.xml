@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_top_corners"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:id="@+id/newTaskText"
-        android:background="@null"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:minHeight="60dp"
+
+
         android:hint="New Task"></EditText>
 
-    <Button
-        android:id="@+id/saveNewTaskButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/newTaskText"
-        android:layout_alignParentEnd="true"
-        android:textSize="16sp"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"
-        android:textColor="@android:color/darker_gray"></Button>
+
+        <Button
+            android:id="@+id/saveNewTaskButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newTaskText"
+            android:layout_alignParentEnd="true"
+            android:textSize="16sp"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/darker_gray"></Button>
+
+
+
 
 </RelativeLayout>
