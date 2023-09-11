@@ -19,6 +19,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_task_detail.*
+import kotlinx.android.synthetic.main.recycler_row_task.*
 import kotlinx.android.synthetic.main.task_layout.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -73,15 +74,20 @@ class TaskDetailFragment : Fragment() {
             editTextTaskDetail.setText(task.taskDetail)
             taskDescriptionTextView.setText(task.taskDescripion)
 
-            val myFormat = "dd-MM-yyyy"
-            val sdf = SimpleDateFormat(myFormat, Locale.UK)
-            displayTaskDetailDateText.setText(sdf.format(task.dueDate))
+            if (task.dueDate !=null){
+                val myFormat = "dd-MM-yyyy"
+                val sdf = SimpleDateFormat(myFormat, Locale.UK)
+                displayTaskDetailDateText.setText(sdf.format(task.dueDate))
+            }
+
 
             if (task.isCompleted){
                 changeCompleteButton.setText("Make It Uncomplete")
             }else{
                 changeCompleteButton.setText("Make It Complete")
             }
+
+            displayFavoriteIcon()
         }
 
         binding.changeCompleteButton.setOnClickListener{
@@ -98,6 +104,18 @@ class TaskDetailFragment : Fragment() {
 
         binding.taskDetailUpdateDateImage.setOnClickListener{
             updateDate(it)
+        }
+
+        binding.taskDetailFavoriteButton.setOnClickListener{
+            updateFavorite(it)
+        }
+    }
+
+    private fun displayFavoriteIcon() {
+        if (task.isFavorite){
+            taskDetailFavoriteButton.setImageResource(R.drawable.on)
+        }else{
+            taskDetailFavoriteButton.setImageResource(R.drawable.off)
         }
     }
 
@@ -159,6 +177,12 @@ class TaskDetailFragment : Fragment() {
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         displayTaskDetailDateText.setText(sdf.format(myCalendar.time))
         task.dueDate = myCalendar.time
+    }
+
+
+    fun updateFavorite(view: View){
+        task.isFavorite = !task.isFavorite
+        displayFavoriteIcon()
     }
 
 

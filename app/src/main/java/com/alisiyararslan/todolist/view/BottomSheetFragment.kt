@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_task_detail.*
 import kotlinx.android.synthetic.main.fragment_task_list.*
 import kotlinx.android.synthetic.main.task_layout.*
 import java.text.SimpleDateFormat
@@ -41,6 +42,8 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
 
     private  var taskList: List<Task> = emptyList()
     private var date : Date? = null
+
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,14 +85,22 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        newTaskFavoriteButton.setOnClickListener{
+            isFavorite = !isFavorite
 
+            if (isFavorite){
+                newTaskFavoriteButton.setImageResource(R.drawable.on)
+            }else{
+                newTaskFavoriteButton.setImageResource(R.drawable.off)
+            }
+        }
 
         saveNewTaskButton.setOnClickListener{
 
 
 
             try {
-                var newTask = Task(binding.newTaskText.text.toString(),false,false,"",date)
+                var newTask = Task(binding.newTaskText.text.toString(),isFavorite,false,"",date)
 
                 compositeDisposible.add(
                     taskDao.insert(newTask)

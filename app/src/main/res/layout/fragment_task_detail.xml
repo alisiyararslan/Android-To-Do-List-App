@@ -8,15 +8,32 @@
     tools:context=".view.TaskDetailFragment"
     android:orientation="vertical"
     android:layout_margin="7dp">
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Task Detail"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:layout_marginBottom="10dp"
         ></TextView>
+
+    <ImageButton
+        android:layout_gravity="right"
+        android:id="@+id/taskDetailFavoriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+
+        android:src="@drawable/star"
+        android:background="#00ffffff"
+        />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/taskDescriptionTextView"
@@ -48,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textSize="14dp"
 
             android:text="Add Task Detail"
 

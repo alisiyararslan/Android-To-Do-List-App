@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.alisiyararslan.todolist.R
 import com.alisiyararslan.todolist.databinding.RecyclerRowTaskBinding
 
 import com.alisiyararslan.todolist.model.Task
@@ -72,6 +73,23 @@ class TaskAdapter(val taskList: List<Task>,var db: TaskDatabase,var taskDao: Tas
         holder.binding.taskDescriptionAndDateLayout.setOnClickListener{
             val action=TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(taskList.get(position))
             Navigation.findNavController(it).navigate(action)
+        }
+
+        holder.binding.recyclerRowFavoriteButton.setOnClickListener{
+            var compositeDisposible= CompositeDisposable()
+            taskList.get(position).isFavorite = !taskList.get(position).isFavorite
+            compositeDisposible.add(
+                taskDao.update(taskList.get(position))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+            )
+        }
+
+        if (taskList.get(position).isFavorite){
+            holder.binding.recyclerRowFavoriteButton.setImageResource(R.drawable.on)
+        }else{
+            holder.binding.recyclerRowFavoriteButton.setImageResource(R.drawable.off)
         }
 
 
