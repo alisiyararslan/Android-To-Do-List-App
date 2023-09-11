@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Task Detail"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:layout_marginBottom="10dp"
@@ -38,6 +39,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/task_detail"
             android:layout_gravity="center"></ImageView>
 
@@ -46,8 +48,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+
             android:text="Add Task Detail"
+
 
             tools:layout_editor_absoluteX="41dp"
             tools:layout_editor_absoluteY="181dp" />
@@ -64,21 +67,22 @@
         >
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/taskDetailUpdateDateImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/date"
             android:layout_gravity="center"></ImageView>
 
-        <EditText
-            android:id="@+id/editTextDate"
+        <TextView
+            android:id="@+id/displayTaskDetailDateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
+            android:textSize="20sp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
 
-            tools:layout_editor_absoluteX="41dp"
-            tools:layout_editor_absoluteY="181dp" />
+             />
 
     </LinearLayout>
     <View

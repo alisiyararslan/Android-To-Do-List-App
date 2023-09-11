@@ -1,5 +1,6 @@
 package com.alisiyararslan.todolist.view
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_task_detail.*
+import kotlinx.android.synthetic.main.task_layout.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class TaskDetailFragment : Fragment() {
@@ -69,6 +73,10 @@ class TaskDetailFragment : Fragment() {
             editTextTaskDetail.setText(task.taskDetail)
             taskDescriptionTextView.setText(task.taskDescripion)
 
+            val myFormat = "dd-MM-yyyy"
+            val sdf = SimpleDateFormat(myFormat, Locale.UK)
+            displayTaskDetailDateText.setText(sdf.format(task.dueDate))
+
             if (task.isCompleted){
                 changeCompleteButton.setText("Make It Uncomplete")
             }else{
@@ -86,6 +94,10 @@ class TaskDetailFragment : Fragment() {
 
         binding.deleteTaskDetailButton.setOnClickListener{
             deleteTask(it)
+        }
+
+        binding.taskDetailUpdateDateImage.setOnClickListener{
+            updateDate(it)
         }
     }
 
@@ -127,6 +139,26 @@ class TaskDetailFragment : Fragment() {
                     Navigation.findNavController(view).navigate(action)
                 }
         )
+    }
+
+    fun updateDate(view: View){
+        val myCalendar  =  Calendar.getInstance()
+
+        val datePicker = DatePickerDialog.OnDateSetListener{ view, year, month, dayOfMont ->
+            myCalendar.set(Calendar.YEAR,year)
+            myCalendar.set(Calendar.MONTH,month)
+            myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMont)
+            updateLable(myCalendar)
+        }
+
+        DatePickerDialog(requireActivity(),datePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    fun updateLable(myCalendar : Calendar){
+        val myFormat = "dd-MM-yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        displayTaskDetailDateText.setText(sdf.format(myCalendar.time))
+        task.dueDate = myCalendar.time
     }
 
 

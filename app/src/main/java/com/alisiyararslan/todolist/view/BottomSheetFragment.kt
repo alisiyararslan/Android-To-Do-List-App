@@ -14,6 +14,7 @@ import com.alisiyararslan.todolist.adapter.TaskAdapter
 import com.alisiyararslan.todolist.databinding.FragmentTaskListBinding
 import com.alisiyararslan.todolist.databinding.TaskLayoutBinding
 import com.alisiyararslan.todolist.model.Task
+import com.alisiyararslan.todolist.roomdb.DateTypeConverter
 import com.alisiyararslan.todolist.roomdb.TaskDao
 import com.alisiyararslan.todolist.roomdb.TaskDatabase
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -39,6 +40,7 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
     private lateinit var taskAdapter: TaskAdapter
 
     private  var taskList: List<Task> = emptyList()
+    private var date : Date? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,9 +87,9 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         saveNewTaskButton.setOnClickListener{
 
 
-            var ttxt = binding.newTaskText.text.toString()
+
             try {
-                var newTask = Task(binding.newTaskText.text.toString(),false,false,"",null)
+                var newTask = Task(binding.newTaskText.text.toString(),false,false,"",date)
 
                 compositeDisposible.add(
                     taskDao.insert(newTask)
@@ -131,6 +133,7 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         val myFormat = "dd-MM-yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         dateDisplayTextView.setText(sdf.format(myCalendar.time))
+        date = myCalendar.time
     }
 
     fun handleResponse(){

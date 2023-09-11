@@ -1,6 +1,7 @@
 package com.alisiyararslan.todolist.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,9 @@ import com.alisiyararslan.todolist.view.TaskListFragmentDirections
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_task_detail.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TaskAdapter(val taskList: List<Task>,var db: TaskDatabase,var taskDao: TaskDao): RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
@@ -39,6 +43,16 @@ class TaskAdapter(val taskList: List<Task>,var db: TaskDatabase,var taskDao: Tas
             holder.binding.todoText.setText(taskList.get(position).taskDescripion)
         }
 
+        if (taskList.get(position).dueDate ==null){
+            holder.binding.todoDateText.visibility = View.GONE
+        }else{
+            holder.binding.todoDateText.visibility = View.VISIBLE
+
+            val myFormat = "dd-MM-yyyy"
+            val sdf = SimpleDateFormat(myFormat, Locale.UK)
+            holder.binding.todoDateText.setText(sdf.format(taskList.get(position).dueDate))
+        }
+
         holder.binding.todoChechBox.setChecked(taskList.get(position).isCompleted)
 
 
@@ -55,7 +69,7 @@ class TaskAdapter(val taskList: List<Task>,var db: TaskDatabase,var taskDao: Tas
             )
         }
 
-        holder.binding.todoText.setOnClickListener{
+        holder.binding.taskDescriptionAndDateLayout.setOnClickListener{
             val action=TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(taskList.get(position))
             Navigation.findNavController(it).navigate(action)
         }

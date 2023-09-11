@@ -36,8 +36,15 @@
 
             android:buttonTint="@android:color/holo_blue_bright"></CheckBox>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/taskDescriptionAndDateLayout"
+            android:orientation="vertical">
+
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -47,7 +54,16 @@
             android:textSize="16dp"
             ></TextView>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/todoDateText"
+            android:textSize="12dp"
+            ></TextView>
 
+        </LinearLayout>
 
         <ImageButton
             android:layout_gravity="right"
