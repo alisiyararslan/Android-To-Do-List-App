@@ -16,6 +16,8 @@ import com.alisiyararslan.todolist.roomdb.TaskDatabase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_task_list.*
+import java.util.*
 
 
 class TaskListFragment : Fragment() {
@@ -29,6 +31,8 @@ class TaskListFragment : Fragment() {
     private lateinit var taskDao: TaskDao
 
     private var compositeDisposible= CompositeDisposable()
+
+    private var sortFlag:Boolean = false
 
 
 
@@ -48,12 +52,28 @@ class TaskListFragment : Fragment() {
     }
 
     fun handleResponse(taskList:List<Task>){
-//        binding.recyclerView.layoutManager=LinearLayoutManager(requireContext())
-//        val adapter=ArtAdapter(artList)
-//        binding.recyclerView.adapter=adapter
 
-        val uncompletedTasks = taskList.filter { !it.isCompleted }
-        val completedTasks = taskList.filter { it.isCompleted }
+
+
+        var uncompletedTasks = taskList.filter { !it.isCompleted }
+        var completedTasks = taskList.filter { it.isCompleted }
+
+
+        if (!sortFlag){ // sort by favorite
+            var uncompletedTasksFavorite = uncompletedTasks.filter { it.isFavorite }
+            var uncompletedTasksUnFavorite = uncompletedTasks.filter { !it.isFavorite }
+            uncompletedTasks = uncompletedTasksFavorite + uncompletedTasksUnFavorite
+
+            var completedTasksFavorite = completedTasks.filter { it.isFavorite }
+            var completedTasksUnFavorite = completedTasks.filter { !it.isFavorite }
+            completedTasks = completedTasksFavorite + completedTasksUnFavorite
+
+
+        }else{//sort by date
+//comparator that compares tasks by their due date. If the dueDate is null, it uses Date(Long.MAX_VALUE) to place those tasks at the end of the list.
+            uncompletedTasks = uncompletedTasks.sortedWith(compareBy { it.dueDate ?: Date(Long.MAX_VALUE) })
+            completedTasks = completedTasks.sortedWith(compareBy { it.dueDate ?: Date(Long.MAX_VALUE) })
+        }
 
         binding.recyclerViewUnCompletedTask.layoutManager = LinearLayoutManager(requireContext())
         val un_completed_adapter = TaskAdapter(uncompletedTasks,db,taskDao)
@@ -76,23 +96,17 @@ class TaskListFragment : Fragment() {
             binding.completedTextCountLayout.visibility = View.GONE
             binding.recyclerViewCompletedTask.visibility = View.GONE
         }
-
-
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
         _binding = FragmentTaskListBinding.inflate(inflater, container, false)
-
-
         val view = binding.root
         return view
-//        return inflater.inflate(R.layout.fragment_task_list, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,17 +120,23 @@ class TaskListFragment : Fragment() {
             changeCompletedTasksVisiblity(it)
         }
 
+        binding.taskListFragmentSortButton.setOnClickListener{
+            sortFlag = !sortFlag
+
+            compositeDisposible.add(
+                taskDao.getAll()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::handleResponse)
+            )
 
 
-
-
-
+        }
     }
 
     fun addTask(view: View){
         val bottomSheetFragment = BottomSheetFragment()
         bottomSheetFragment.show(requireActivity().supportFragmentManager,"BottomSheetDialog")
-
     }
 
     fun changeCompletedTasksVisiblity(view : View){
@@ -132,6 +152,4 @@ class TaskListFragment : Fragment() {
         compositeDisposible.clear()
         _binding = null
     }
-
-
 }

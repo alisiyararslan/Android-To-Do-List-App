@@ -97,8 +97,6 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
 
         saveNewTaskButton.setOnClickListener{
 
-
-
             try {
                 var newTask = Task(binding.newTaskText.text.toString(),isFavorite,false,"",date)
 
@@ -110,11 +108,6 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
                 )
 
                 taskAdapter.notifyDataSetChanged()
-
-
-
-
-
 
             }catch (e:Exception){
                 e.printStackTrace()
