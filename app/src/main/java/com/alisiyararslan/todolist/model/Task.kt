@@ -3,6 +3,9 @@ package com.alisiyararslan.todolist.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import com.alisiyararslan.todolist.roomdb.DateTypeConverter
 import kotlinx.android.parcel.Parcelize
 import java.util.Date
 
@@ -17,7 +20,8 @@ class Task(
 
     var taskDetail:String?,
 
-   // var dueDate: Date?,
+    @TypeConverters(DateTypeConverter::class)
+    var dueDate: Date?,
 
 
 

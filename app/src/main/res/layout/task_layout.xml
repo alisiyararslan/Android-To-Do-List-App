@@ -18,6 +18,42 @@
 
         android:hint="New Task"></EditText>
 
+    <ImageButton
+        android:layout_gravity="right"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/newTaskFavoriteButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/newTaskText"
+
+        android:src="@drawable/star"
+        android:background="#00ffffff"
+        android:onClick="onToggleStar"/>
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/date"
+        android:layout_below="@+id/newTaskText"
+        android:id="@+id/newTaskDate"
+        android:layout_toRightOf="@id/newTaskFavoriteButton"
+        android:layout_gravity="center"></ImageView>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="11dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateDisplayTextView"
+
+        android:textSize="25sp"
+        android:layout_below="@+id/newTaskText"
+        android:layout_toRightOf="@id/newTaskDate"
+        android:textColor="@color/black"></TextView>
+
+
+
 
         <Button
             android:id="@+id/saveNewTaskButton"
