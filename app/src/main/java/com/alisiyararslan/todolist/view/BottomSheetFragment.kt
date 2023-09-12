@@ -26,12 +26,17 @@ import kotlinx.android.synthetic.main.fragment_task_list.*
 import kotlinx.android.synthetic.main.task_layout.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class BottomSheetFragment: BottomSheetDialogFragment() {
 
     private var _binding: TaskLayoutBinding? = null
 
     private val binding get() = _binding!!
+
+    private var _binding2: FragmentTaskListBinding? = null
+
+    private val binding2 get() = _binding2!!
 
     private var compositeDisposible= CompositeDisposable()
 
@@ -40,16 +45,15 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
 
     private lateinit var taskAdapter: TaskAdapter
 
-    private  var taskList: List<Task> = emptyList()
+    private  var taskList: ArrayList<Task>  = ArrayList()
     private var date : Date? = null
 
     private var isFavorite = false
 
+    private  var newTask: Task? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
 
         db= Room.databaseBuilder(requireContext(), TaskDatabase::class.java,"Tasks").build()
         taskDao=db.taskDao()
@@ -61,12 +65,13 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
                 .subscribe(this::handleResponse)
         )
 
-
         taskAdapter= TaskAdapter(taskList,db,taskDao)
     }
 
     fun handleResponse(_taskList:List<Task>){
-        taskList = _taskList
+
+
+        taskList = ArrayList(_taskList)
 
     }
 
@@ -77,9 +82,10 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
     ): View? {
 
         _binding = TaskLayoutBinding.inflate(inflater, container, false)
+        _binding2 = FragmentTaskListBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
-        //return inflater.inflate(R.layout.task_layout,container,false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -98,16 +104,14 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         saveNewTaskButton.setOnClickListener{
 
             try {
-                var newTask = Task(binding.newTaskText.text.toString(),isFavorite,false,"",date)
+                newTask = Task(binding.newTaskText.text.toString(),isFavorite,false,"",date)
 
                 compositeDisposible.add(
-                    taskDao.insert(newTask)
+                    taskDao.insert(newTask!!)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(this::handleResponse)
+                        .subscribe(this::handleResponse2)
                 )
-
-                taskAdapter.notifyDataSetChanged()
 
             }catch (e:Exception){
                 e.printStackTrace()
@@ -140,8 +144,13 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         date = myCalendar.time
     }
 
-    fun handleResponse(){
+    fun handleResponse2(){
+
+        taskList += newTask!!
+
+        taskAdapter.updateData(taskList)
         dismiss()
+
     }
 
     override fun onDestroyView() {

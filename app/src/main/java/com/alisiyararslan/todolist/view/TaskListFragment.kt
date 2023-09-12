@@ -18,6 +18,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_task_list.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TaskListFragment : Fragment() {
@@ -33,9 +34,6 @@ class TaskListFragment : Fragment() {
     private var compositeDisposible= CompositeDisposable()
 
     private var sortFlag:Boolean = false
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,16 +46,12 @@ class TaskListFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResponse)
         )
-
     }
 
     fun handleResponse(taskList:List<Task>){
 
-
-
         var uncompletedTasks = taskList.filter { !it.isCompleted }
         var completedTasks = taskList.filter { it.isCompleted }
-
 
         if (!sortFlag){ // sort by favorite
             var uncompletedTasksFavorite = uncompletedTasks.filter { it.isFavorite }
@@ -76,7 +70,7 @@ class TaskListFragment : Fragment() {
         }
 
         binding.recyclerViewUnCompletedTask.layoutManager = LinearLayoutManager(requireContext())
-        val un_completed_adapter = TaskAdapter(uncompletedTasks,db,taskDao)
+        val un_completed_adapter = TaskAdapter(ArrayList(uncompletedTasks),db,taskDao)
         binding.recyclerViewUnCompletedTask.adapter =un_completed_adapter
 
         if (completedTasks.size>0){
@@ -86,7 +80,7 @@ class TaskListFragment : Fragment() {
 
 
             binding.recyclerViewCompletedTask.layoutManager = LinearLayoutManager(requireContext())
-            val completed_adapter = TaskAdapter(completedTasks,db,taskDao)
+            val completed_adapter = TaskAdapter(ArrayList(completedTasks),db,taskDao)
             binding.recyclerViewCompletedTask.adapter =completed_adapter
 
             binding.completedCountText.setText("Completed ("+completedTasks.size.toString()+")")
@@ -137,6 +131,9 @@ class TaskListFragment : Fragment() {
     fun addTask(view: View){
         val bottomSheetFragment = BottomSheetFragment()
         bottomSheetFragment.show(requireActivity().supportFragmentManager,"BottomSheetDialog")
+
+        val dneme = 1
+
     }
 
     fun changeCompletedTasksVisiblity(view : View){

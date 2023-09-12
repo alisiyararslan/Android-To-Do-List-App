@@ -65,7 +65,6 @@ class TaskDetailFragment : Fragment() {
 
         val view = binding.root
         return view
-        //return inflater.inflate(R.layout.fragment_task_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -186,8 +185,6 @@ class TaskDetailFragment : Fragment() {
         task.isFavorite = !task.isFavorite
         displayFavoriteIcon()
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

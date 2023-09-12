@@ -10,41 +10,7 @@
     tools:context=".view.MainActivity">
 
 
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/tab_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        -->
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="star"-->
-<!--            ></com.google.android.material.tabs.TabItem>-->
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="tasks"-->
-<!--            ></com.google.android.material.tabs.TabItem>-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="+ new list"-->
-<!--            ></com.google.android.material.tabs.TabItem>-->
-
-
-<!--    </com.google.android.material.tabs.TabLayout>-->
-
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/view_pager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-
-
-<!--    </androidx.viewpager.widget.ViewPager>-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -55,10 +21,7 @@
         app:navGraph="@navigation/navigation_graph" />
 
 
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1" />-->
+
 
 
 

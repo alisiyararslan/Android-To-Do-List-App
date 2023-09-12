@@ -9,6 +9,18 @@
     android:orientation="vertical"
     tools:context=".view.TaskListFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task List"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp"
+        ></TextView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUnCompletedTask"
         android:layout_width="match_parent"

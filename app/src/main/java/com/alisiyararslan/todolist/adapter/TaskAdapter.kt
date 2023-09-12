@@ -1,5 +1,6 @@
 package com.alisiyararslan.todolist.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +20,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_task_detail.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-class TaskAdapter(val taskList: List<Task>,var db: TaskDatabase,var taskDao: TaskDao): RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
+public class TaskAdapter(var taskList: ArrayList<Task>,var db: TaskDatabase,var taskDao: TaskDao): RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
 
     class TaskHolder(val binding: RecyclerRowTaskBinding): RecyclerView.ViewHolder(binding.root) {
@@ -95,5 +97,14 @@ class TaskAdapter(val taskList: List<Task>,var db: TaskDatabase,var taskDao: Tas
 
 
 
+    }
+
+
+
+    public fun updateData(newData: kotlin.collections.ArrayList<Task>) {
+
+        this.taskList = newData
+
+        this.notifyDataSetChanged()
     }
 }
